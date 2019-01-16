@@ -70,7 +70,7 @@
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({
-              url: this.$http.adornUrl('/sys/login'),
+              url: this.$http.adornUrl('/login'),
               method: 'post',
               data: this.$http.adornData({
                 'username': this.dataForm.userName,
@@ -80,7 +80,7 @@
               })
             }).then(({data}) => {
               if (data && data.code === 0) {
-                this.$cookie.set('token', data.token)
+                this.$cookie.set('token', data.data.token)
                 this.$router.replace({ name: 'home' })
               } else {
                 this.getCaptcha()
